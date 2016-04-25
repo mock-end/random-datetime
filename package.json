@@ -1,6 +1,6 @@
 {
   "name": "random-datetime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate a random date.",
   "main": "index.js",
   "scripts": {
@@ -15,12 +15,13 @@
     "date",
     "time",
     "datetime",
-    "generator",
-    "generate",
-    "gen",
     "random",
+    "randomly",
     "randomize",
-    "rand"
+    "chance",
+    "test",
+    "dice",
+    "mock"
   ],
   "author": {
     "name": "bubkoo",
@@ -43,8 +44,13 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
-    "clamp": "^1.0.1",
+    "random-day": "^1.0.0",
+    "random-hour": "^1.0.2",
+    "random-millisecond": "^1.0.3",
+    "random-minute": "^1.0.3",
+    "random-month": "^1.0.0",
     "random-natural": "^1.0.1",
-    "to-integer": "^1.0.1"
+    "random-second": "^1.0.2",
+    "random-year": "^1.0.1"
   }
 }

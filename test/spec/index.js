@@ -9,26 +9,23 @@ describe('random-date: ', function () {
 
   it('common', function () {
 
-    var now   = (new Date).getTime();
-    var start = (new Date(0)).getTime();
-    var end   = (new Date(9999, 11, 31, 23, 59, 59)).getTime();
-    var date  = randomDate();
+    var count = 100;
 
-    expect(date).to.be.instanceof(Date);
-    expect(date.getTime()).to.be.within(start, end);
+    while (count--) {
 
-    expect(randomDate({}).getTime()).to.be.within(start, end);
-    expect(randomDate(0).getTime()).to.be.within(start, end);
-    expect(randomDate('0').getTime()).to.be.within(start, end);
-
-    expect(randomDate(new Date()).getTime()).to.be.within(start, +new Date);
-    expect(randomDate((new Date()).getTime()).getTime()).to.be.within(start, +new Date);
-
-
-    expect(randomDate(0, 0).getTime()).to.be.within(start, end);
-
-    expect(randomDate(now - 1000, now + 1000).getTime()).to.be.within(now - 1000, now + 1000);
-
-    console.log(randomDate(now - 100000))
+      expect(randomDate()).to.be.instanceof(Date);
+      expect(randomDate({
+        year: 2000,
+        month: 2,
+        day: 20,
+        hour: 14,
+        minute: 45,
+        second: 23,
+        millisecond: 789
+      }))
+        .to.be.instanceof(Date)
+        .and
+        .eql(new Date(2000, 1, 20, 14, 45, 23, 789));
+    }
   });
 });

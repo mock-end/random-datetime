@@ -1,41 +1,25 @@
 'use strict';
 
-var clamp         = require('clamp');
-var toInt         = require('to-integer');
-var randomNatural = require('random-natural');
+var randomYear        = require('random-year');
+var randomMonth       = require('random-month');
+var randomDay         = require('random-day');
+var randomHour        = require('random-hour');
+var randomMinute      = require('random-minute');
+var randomSecond      = require('random-second');
+var randomMillisecond = require('random-millisecond');
 
-function fixme(val, fall) {
-  if (typeof val === 'object') {
-    if (val.getTime) {
-      return val.getTime();
-    } else {
-      return fall;
-    }
-  }
 
-  return toInt(val) || fall;
-}
+module.exports = function (options) {
 
-module.exports = function (min, max) {
+  options = options || {};
 
-  var start = (new Date(0)).getTime();
-  var end   = (new Date(9999, 11, 31, 23, 59, 59)).getTime();
+  var year        = options.year || randomYear();
+  var month       = options.month || randomMonth();
+  var day         = options.day || randomDay();
+  var hour        = options.hour || randomHour({ twentyFour: true });
+  var minute      = options.minute || randomMinute();
+  var second      = options.second || randomSecond();
+  var millisecond = options.millisecond || randomMillisecond();
 
-  var length = arguments.length;
-
-  if (length === 0) {
-    min = start;
-    max = end;
-  } else if (length === 1) {
-    max = min ? fixme(min, end) : end;
-    min = start;
-  } else {
-    min = min ? fixme(min, start) : start;
-    max = max ? fixme(max, end) : end;
-  }
-
-  min = clamp(min, start, end);
-  max = clamp(max, start, end);
-
-  return new Date(randomNatural(min, max));
+  return new Date(year, month - 1, day, hour, minute, second, millisecond);
 };
